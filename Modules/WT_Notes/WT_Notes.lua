@@ -692,14 +692,20 @@ function WT_Notes:SyncNoteToOthers()
     local message = "WT_Notes:" .. encodedName .. "@@@@@@" .. encodedContent
     WT_Notes:SendCommMessage("WT_Notes", message, "RAID")
 end
+
+local function SendChatMSG(msg)
+    SendChatMessage(msg, WT_Notes.Note_M_S_Body_sendChannel)
+    return
+end
+
 local function removeColorCodes(text)
     -- 正则表达式匹配颜色代码及其包围的文本
     local pattern = "(.-)|cff[0-9a-fA-F]+(.-)|r(.-)"
     -- 正则表达式匹配特殊链接
-    local linkPattern = "|H[^|]*|h[^|]*|h"
+    local linkPattern = "(.-)|H(.-)|h|r(.-)"
 
     -- 替换操作
-    local hasLink = string.match(text, linkPattern)
+    local beforeLink1, hasLink, afterLink = string.match(text, linkPattern)
     local beforeText, colorText, afterText = string.match(text, pattern)
     if colorText and not hasLink then
         return beforeText .. colorText .. afterText
@@ -1237,10 +1243,10 @@ function WT_Notes:SetupUI()
         -- 获取笔记内容并分割成多行
         local noteContent = self.selectedNote.content
         local lines = {string.split("\n", noteContent)}
-        for _, line in ipairs(lines) do
+        for index, line in ipairs(lines) do
             -- 替换匹配到的颜色代码为空字符串
             local newLine = removeColorCodes(line)
-            SendChatMessage(newLine, WT_Notes.Note_M_S_Body_sendChannel)
+            C_Timer.After(index, function() SendChatMSG(newLine) end)
         end
     end)
     sendNoteButton.frame:Show()
