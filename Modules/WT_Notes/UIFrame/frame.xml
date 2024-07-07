@@ -1,0 +1,287 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+    <Frame name="BaseWT_NotesFrameTemplate" virtual="true">
+        <Frames>
+            <Button parentKey="CloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+                        <Offset x="5" y="5"/>
+                    </Anchor>
+                </Anchors>
+            </Button>
+        </Frames>
+    </Frame>
+    <Frame name="WT_NotesFrameTemplate" inherits="BaseWT_NotesFrameTemplate" virtual="true">
+        <Layers>
+            <Layer level="BACKGROUND" textureSubLevel="-1">
+                <Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8" horizTile="true" vertTile="true">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="0" y="0"/>
+                        <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="BACKGROUND">
+            </Layer>
+        </Layers>
+    </Frame>
+    <Frame name="WT_NotesFrame" inherits="WT_NotesFrameTemplate" virtual="true">
+        <!-- 列表容器 -->
+        <Frames>
+            <Frame name="WT_NoteListFrame" parentKey="WT_NoteListFrame">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" x="0" y="0"/>
+                                <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <!-- 标题栏 -->
+                <Frames>
+                    <Frame name="WT_NoteListFrameTitle" parentKey="WT_NoteListFrameTitle">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                            <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT"/>
+                            <Anchor point="BOTTOM" relativePoint="TOP" y="-30"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="BACKGROUND">
+                                <Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" x="0" y="0"/>
+                                        <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+
+
+                    </Frame>
+                    <Frame name="WT_NoteListFrameBody" parentKey="WT_NoteListFrameBody">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="WT_NoteListFrameTitle" relativePoint="BOTTOMLEFT"/>
+                            <Anchor point="TOPRIGHT" relativeTo="WT_NoteListFrameTitle" relativePoint="BOTTOMRIGHT"/>
+                            <!-- <Anchor point="BOTTOM" relativePoint="BOTTOM" y="0"/> -->
+                        </Anchors>
+                        <Layers>
+                            <Layer level="BACKGROUND">
+                                <Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" x="0" y="0"/>
+                                        <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+                    <Frame name="WT_NoteListFrameOpt" parentKey="WT_NoteListFrameOpt">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="WT_NoteListFrameBody" relativePoint="BOTTOMLEFT"/>
+                            <Anchor point="TOPRIGHT" relativeTo="WT_NoteListFrameBody" relativePoint="BOTTOMRIGHT"/>
+                            <Anchor point="BOTTOM" relativeTo="WT_NoteListFrame" relativePoint="BOTTOM"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="BACKGROUND">
+                                <Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" x="0" y="0"/>
+                                        <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+                </Frames>
+            </Frame>
+            <Frame name="WT_NoteEditFrame" parentKey="WT_NoteEditFrame">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="WT_NoteListFrame" relativePoint="TOPRIGHT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" x="0" y="0"/>
+                                <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <!-- 标题栏 -->
+                <Frames>
+                    <Frame name="WT_NoteEditFrameTitle" parentKey="WT_NoteEditFrameTitle">
+                        <Anchors>
+                            <Anchor point="TOPLEFT"/>
+                            <Anchor point="TOPRIGHT"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="BACKGROUND">
+                                <Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" x="0" y="0"/>
+                                        <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+                    <Frame name="WT_NoteEditFrameBody" parentKey="WT_NoteEditFrameBody">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="WT_NoteEditFrameTitle" relativePoint="BOTTOMLEFT"/>
+                            <Anchor point="TOPRIGHT" relativeTo="WT_NoteEditFrameTitle" relativePoint="BOTTOMRIGHT"/>
+                            <!-- <Anchor point="BOTTOM" relativePoint="BOTTOM" y="0"/> -->
+                        </Anchors>
+                        <Layers>
+                            <Layer level="BACKGROUND">
+                                <Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" x="0" y="0"/>
+                                        <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+                </Frames>
+            </Frame>
+            <Frame name="WT_NoteRightFrame" parentKey="WT_NoteRightFrame">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+                            <Anchors>
+                                <Anchor point="TOPRIGHT" x="0" y="0"/>
+                                <Anchor point="BOTTOMLEFT" x="0" y="0"/>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <Frames>
+                    <Frame name="WT_NoteToolsFrame" parentKey="WT_NoteToolsFrame">
+                        <Anchors>
+                            <Anchor point="TOPLEFT"/>
+                            <Anchor point="TOPRIGHT"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="BACKGROUND">
+                                <Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" x="0" y="0"/>
+                                        <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                            <Frame name="WT_NoteToolsFrameTitle" parentKey="WT_NoteToolsFrameTitle">
+                                <Anchors>
+                                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                                    <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT"/>
+                                    <Anchor point="BOTTOM" relativePoint="TOP" y="-30"/>
+                                </Anchors>
+                                <Layers>
+                                    <Layer level="BACKGROUND">
+                                        <Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+                                            <Anchors>
+                                                <Anchor point="TOPLEFT" x="0" y="0"/>
+                                                <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                                            </Anchors>
+                                        </Texture>
+                                    </Layer>
+
+                                </Layers>
+                            </Frame>
+
+                            <Frame name="WT_NoteToolsFrameBody" parentKey="WT_NoteToolsFrameBody">
+                                <Anchors>
+                                    <Anchor point="TOPLEFT" relativeTo="WT_NoteToolsFrameTitle" relativePoint="BOTTOMLEFT"/>
+                                    <Anchor point="TOPRIGHT" relativeTo="WT_NoteToolsFrameTitle" relativePoint="BOTTOMRIGHT"/>
+                                    <Anchor point="BOTTOM" relativePoint="BOTTOM" y="0"/>
+                                </Anchors>
+                                <Layers>
+                                    <Layer level="BACKGROUND">
+                                        <Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+                                            <Anchors>
+                                                <Anchor point="TOPLEFT" x="0" y="0"/>
+                                                <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                                            </Anchors>
+                                        </Texture>
+                                    </Layer>
+                                </Layers>
+                            </Frame>
+                        </Frames>
+                    </Frame>
+                    <Frame name="WT_NoteSettingFrame" parentKey="WT_NoteSettingFrame">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="WT_NoteToolsFrame" relativePoint="BOTTOMLEFT"/>
+                            <Anchor point="TOPRIGHT" relativeTo="WT_NoteToolsFrame" relativePoint="BOTTOMRIGHT"/>
+                            <Anchor point="BOTTOM" relativeTo="WT_NoteRightFrame" relativePoint="BOTTOM"/>
+                            <!-- 设置区域底部与WT_NoteRightFrame底部对齐 -->
+                        </Anchors>
+                        <Layers>
+                            <Layer level="BACKGROUND">
+                                <Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" x="0" y="0"/>
+                                        <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+
+                        </Layers>
+                        <Frames>
+                            <Frame name="WT_NoteSettingFrameTitle" parentKey="WT_NoteSettingFrameTitle">
+                                <Anchors>
+                                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                                    <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT"/>
+                                    <Anchor point="BOTTOM" relativePoint="TOP" y="-30"/>
+                                </Anchors>
+                                <Layers>
+                                    <Layer level="BACKGROUND">
+                                        <Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+                                            <Anchors>
+                                                <Anchor point="TOPLEFT" x="0" y="0"/>
+                                                <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                                            </Anchors>
+                                        </Texture>
+                                    </Layer>
+
+                                </Layers>
+                            </Frame>
+
+                            <Frame name="WT_NoteSettingFrameBody" parentKey="WT_NoteSettingFrameBody">
+                                <Anchors>
+                                    <Anchor point="TOPLEFT" relativeTo="WT_NoteSettingFrameTitle" relativePoint="BOTTOMLEFT"/>
+                                    <Anchor point="TOPRIGHT" relativeTo="WT_NoteSettingFrameTitle" relativePoint="BOTTOMRIGHT"/>
+                                    <Anchor point="BOTTOM" relativePoint="BOTTOM" y="0"/>
+                                </Anchors>
+                                <Layers>
+                                    <Layer level="BACKGROUND">
+                                        <Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+                                            <Anchors>
+                                                <Anchor point="TOPLEFT" x="0" y="0"/>
+                                                <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                                            </Anchors>
+                                        </Texture>
+                                    </Layer>
+                                </Layers>
+                            </Frame>
+                        </Frames>
+                    </Frame>
+                </Frames>
+            </Frame>
+        </Frames>
+        <Layers>
+            <Layer level="BACKGROUND">
+            </Layer>
+        </Layers>
+    </Frame>
+</Ui>

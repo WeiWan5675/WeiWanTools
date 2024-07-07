@@ -1,0 +1,34 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+    <!-- Libs that are standalone or used by others -->
+    <Script file="Libs\LibStub\LibStub.lua"/>
+
+    <!-- CallbackHandler is often used by Ace libraries -->
+    <Include file="Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml" />
+    <Script file="Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua"/>
+
+
+    <!-- Core Ace3 libraries -->
+    <Include file="Libs\AceAddon-3.0\AceAddon-3.0.xml" />
+    <Include file="Libs\AceDB-3.0\AceDB-3.0.xml" />
+    <Include file="Libs\AceEvent-3.0\AceEvent-3.0.xml" />
+    <Include file="Libs\AceTimer-3.0\AceTimer-3.0.xml" />
+    <Include file="Libs\AceLocale-3.0\AceLocale-3.0.xml" />
+    <Include file="Libs\AceHook-3.0\AceHook-3.0.xml" />
+    <Include file="Libs\AceSerializer-3.0\AceSerializer-3.0.xml" />
+
+    <!-- Libraries that extend functionality and depend on others -->
+    <Include file="Libs\AceGUI-3.0\AceGUI-3.0.xml" />
+    <Include file="Libs\AceConfig-3.0\AceConfig-3.0.xml" />
+    <Include file="Libs\AceDBOptions-3.0\AceDBOptions-3.0.xml" />
+    <Include file="Libs\AceConsole-3.0\AceConsole-3.0.xml" />
+    <Include file="Libs\AceComm-3.0\AceComm-3.0.xml" />
+    <Include file="Libs\AceBucket-3.0\AceBucket-3.0.xml" />
+
+
+    <!-- LibDBIcon uses LibDataBroker -->
+    <Script file="Libs\LibDBIcon-1.0\LibDBIcon-1.0.lua"/>
+    <Script file="Libs\LibBase64-1.0\LibBase64-1.0.lua"/>
+
+
+</Ui>

@@ -1,0 +1,184 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Button name="WT_NotesTabButtonTemplate" parentArray="tabs" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0"/>
+					</Anchors>
+					<Size>
+						<AbsDimension x="200" y="20"/>
+					</Size>
+				</Texture>
+			</Layer>
+			<Layer level="HIGHLIGHT">
+				<Texture parentKey="Highlight" file="Interface\Buttons\WHITE8X8">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0"/>
+					</Anchors>
+					<Size>
+						<AbsDimension x="200" y="20"/>
+					</Size>
+					<Color a="0.3" r="1" g="1" b="1" />
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+		</Scripts>
+		<NormalFont style="GameFontNormalSmall"/>
+		<HighlightFont style="GameFontHighlightSmall"/>
+		<DisabledFont style="GameFontHighlightSmall"/>
+	</Button>
+	<Button name="WT_OptButtonTemplate_1" parentArray="btns" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0"/>
+					</Anchors>
+					<Size>
+						<AbsDimension x="170" y="20"/>
+					</Size>
+				</Texture>
+			</Layer>
+			<Layer level="HIGHLIGHT">
+				<Texture parentKey="Highlight" file="Interface\Buttons\WHITE8X8">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0"/>
+					</Anchors>
+					<Size>
+						<AbsDimension x="170" y="20"/>
+					</Size>
+					<Color a="0.3" r="1" g="1" b="1" />
+				</Texture>
+			</Layer>
+			<!-- 边框层 -->
+			<Layer level="BORDER">
+				<!-- 顶部边框 -->
+				<Texture file="Interface\Buttons\WHITE8X8">
+					<Size x="170" y="2"/>
+					<!-- 根据您的边框纹理调整尺寸 -->
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="0"/>
+						<!-- 从顶部向下5像素 -->
+						<Anchor point="TOPRIGHT" x="0" y="0"/>
+						<!-- 与上对应 -->
+					</Anchors>
+				</Texture>
+				<!-- 底部边框 -->
+				<Texture file="Interface\Buttons\WHITE8X8">
+					<Size x="170" y="2"/>
+					<!-- 根据您的边框纹理调整尺寸 -->
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" x="0" y="0"/>
+						<!-- 从底部向上5像素 -->
+						<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+						<!-- 与上对应 -->
+					</Anchors>
+				</Texture>
+				<!-- 左侧边框 -->
+				<Texture file="Interface\Buttons\WHITE8X8">
+					<Size x="2" y="20"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="0"/>
+						<!-- 从左侧向右5像素 -->
+						<Anchor point="BOTTOMLEFT" x="0" y="0"/>
+						<!-- 与上对应 -->
+					</Anchors>
+				</Texture>
+				<!-- 右侧边框 -->
+				<Texture file="Interface\Buttons\WHITE8X8">
+					<Size x="3" y="20"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" x="0" y="0"/>
+						<!-- 从右侧向左5像素 -->
+						<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+						<!-- 与上对应 -->
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+		</Scripts>
+		<NormalFont style="GameFontNormalSmall"/>
+		<HighlightFont style="GameFontHighlightSmall"/>
+		<DisabledFont style="GameFontHighlightSmall"/>
+	</Button>
+	<Button name="WT_OptButtonTemplate_2" parentArray="btns" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="Bg" file="Interface\Buttons\WHITE8X8">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0"/>
+					</Anchors>
+					<Size>
+						<AbsDimension x="78" y="20"/>
+					</Size>
+				</Texture>
+			</Layer>
+			<Layer level="HIGHLIGHT">
+				<Texture parentKey="Highlight" file="Interface\Buttons\WHITE8X8">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0"/>
+					</Anchors>
+					<Size>
+						<AbsDimension x="78" y="20"/>
+					</Size>
+					<Color a="0.3" r="1" g="1" b="1" />
+				</Texture>
+			</Layer>
+			<!-- 边框层 -->
+			<Layer level="BORDER">
+				<!-- 顶部边框 -->
+				<Texture file="Interface\Buttons\WHITE8X8">
+					<Size x="78" y="2"/>
+					<!-- 根据您的边框纹理调整尺寸 -->
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="0"/>
+						<!-- 从顶部向下5像素 -->
+						<Anchor point="TOPRIGHT" x="0" y="0"/>
+						<!-- 与上对应 -->
+					</Anchors>
+				</Texture>
+				<!-- 底部边框 -->
+				<Texture file="Interface\Buttons\WHITE8X8">
+					<Size x="78" y="2"/>
+					<!-- 根据您的边框纹理调整尺寸 -->
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" x="0" y="0"/>
+						<!-- 从底部向上5像素 -->
+						<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+						<!-- 与上对应 -->
+					</Anchors>
+				</Texture>
+				<!-- 左侧边框 -->
+				<Texture file="Interface\Buttons\WHITE8X8">
+					<Size x="3" y="20"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="0"/>
+						<!-- 从左侧向右5像素 -->
+						<Anchor point="BOTTOMLEFT" x="0" y="0"/>
+						<!-- 与上对应 -->
+					</Anchors>
+				</Texture>
+				<!-- 右侧边框 -->
+				<Texture file="Interface\Buttons\WHITE8X8">
+					<Size x="3" y="20"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" x="0" y="0"/>
+						<!-- 从右侧向左5像素 -->
+						<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+						<!-- 与上对应 -->
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+		</Scripts>
+		<NormalFont style="GameFontNormalSmall"/>
+		<HighlightFont style="GameFontHighlightSmall"/>
+		<DisabledFont style="GameFontHighlightSmall"/>
+	</Button>
+</Ui>

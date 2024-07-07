@@ -1,0 +1,15 @@
+## Interface: 100207
+## Version: 1.0.0
+## Title: WeiWanTools
+## Notes: 女大学生自用九成新插件合集, 相关使用问题请联系: 未完#5675
+## Author: 未完#5675
+## SavedVariables: WeiWanToolsDB, WT_NotesDB
+## OptionalDeps: Ace3
+## Libs
+WeiWanTools.xml
+WeiWanTools.lua
+
+
+## Modules
+
+Modules\WT_Modules.xml
