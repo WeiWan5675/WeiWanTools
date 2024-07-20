@@ -13,12 +13,15 @@ local LDBI = LibStub('LibDBIcon-1.0')
 WeiWanTools.WT_Features = nil
 WeiWanTools.WT_Notes = nil
 
-function WeiWanTools:WtHelpInfo() self:Print("打印帮助信息") end
-
-function WeiWanTools:WtOpenSettings(group)
-    self:Print("打开设置面板")
-    AceConfigDialog:Open("WeiWanTools")
+function WeiWanTools:WtHelpInfo()
+    print("-----------WeiWanTools帮助信息-----------")
+    print("/wt opt 打开设置面板")
+    print("/wt note 打开冒险笔记本")
+    print("/wt help 打印帮助信息")
+    print("----------------------------------------")
 end
+
+function WeiWanTools:WtOpenSettings(group) AceConfigDialog:Open("WeiWanTools") end
 
 function WeiWanTools:WtRootCommand(cmd)
     cmd = string.lower(cmd)
@@ -35,9 +38,7 @@ function WeiWanTools:WtRootCommand(cmd)
     end
 end
 
-function WeiWanTools:OnToggleOptionChanged(optionValue, optionName)
-    print("选项名称: " .. optionName .. " 选项值: " .. optionValue)
-end
+function WeiWanTools:OnToggleOptionChanged(optionValue, optionName) end
 
 function WeiWanTools:ResetProfileConfirmation()
     -- 定义对话框
@@ -98,6 +99,41 @@ local options = {
                     type = "header", -- 标题
                     name = "小功能设置",
                     order = 1
+                },
+                autoSetting = {
+                    type = "toggle", -- 开关
+                    name = "启用自动游戏设置",
+                    desc = "启用自动游戏设置",
+                    get = function(info)
+                        return WeiWanTools.db.profile.autoSetting.enabled
+                    end,
+                    set = function(info, value)
+                        WeiWanTools.db.profile.autoSetting.enabled = value
+                        WeiWanTools:OnToggleOptionChanged(value,
+                                                          '启用自动折叠追踪栏')
+                    end,
+                    order = 2
+                },
+                autoSettingGroup = {
+                    type = "group",
+                    name = "自动游戏设置",
+                    args = {
+                        autoCloseBattleText = {
+                            type = "toggle", -- 开关
+                            name = "关闭浮动战斗信息",
+                            desc = "关闭浮动战斗信息",
+                            get = function(info)
+                                return WeiWanTools.db.profile.autoSetting
+                                           .autoCloseBattleText
+                            end,
+                            set = function(info, value)
+                                WeiWanTools.db.profile.autoSetting
+                                    .autoCloseBattleText = value
+                                WeiWanTools:OnToggleOptionChanged(value,
+                                                                  '地下城时自动折叠追踪栏')
+                            end
+                        }
+                    }
                 },
                 autoFoldQuestBar = {
                     type = "toggle", -- 开关
@@ -397,7 +433,8 @@ function WeiWanTools:OnInitialize()
                 noteLeftAlpha = 0.8,
                 noteThemeColor = "00bd00"
             },
-            showMiniMapIcon = true -- 是否显示小地图图标
+            showMiniMapIcon = true, -- 是否显示小地图图标
+            autoSetting = {enabled = false, autoCloseBattleText = false}
         }
     })
     -- 注册到暴雪插件设置
@@ -407,7 +444,6 @@ function WeiWanTools:OnInitialize()
     WeiWanTools:RegisterMiniMapIcon()
     -- 注册子模块
     if self.db.profile.notebookSetting.enabled then
-        print("初始化模块: WT_Notes")
         WeiWanTools.WT_Notes = LibStub("AceAddon-3.0"):GetAddon("WT_Notes")
         WeiWanTools.WT_Notes:RegisterWithParent(WeiWanTools)
     end

@@ -1344,7 +1344,6 @@ end
 
 -- 初始化函数
 function WT_Notes:OnInitialize()
-    print('WT_Notes 初始化执行')
     -- 注册数据库, 这里的名字和toc文件的名字一致
     self.db = AceDB:New("WT_NotesDB")
     self.db:RegisterDefaults({profile = {notes = {}}})
@@ -1353,21 +1352,24 @@ function WT_Notes:OnInitialize()
     if self.parent then
         WT_Notes.notebookSetting = self.parent:GetProfileSetting(
                                        "notebookSetting")
-        -- 因为不会写滚动条,所以最多支持30篇笔记
-        WT_Notes.notes = self.db.profile.notes
-        -- 渲染笔记UI框架
-        self:SetupUI()
-        -- 渲染笔记列表
-        for index, note in pairs(WT_Notes.notes) do
-            local noteRow = CreateNoteRow(note)
+
+        if WT_Notes.notebookSetting.enabled then
+            -- 因为不会写滚动条,所以最多支持30篇笔记
+            WT_Notes.notes = self.db.profile.notes
+            -- 渲染笔记UI框架
+            self:SetupUI()
+            -- 渲染笔记列表
+            for index, note in pairs(WT_Notes.notes) do
+                local noteRow = CreateNoteRow(note)
+            end
+            if #self.notes > 0 then
+                self.selectedNote = WT_Notes.notes[1]
+                WT_Notes:SelectNote()
+            else
+                WT_Notes:UpdateNoteAll()
+            end
+            self:RegisterComm("WT_Notes", "OnAddonMessageReceived")
         end
-        if #self.notes > 0 then
-            self.selectedNote = WT_Notes.notes[1]
-            WT_Notes:SelectNote()
-        else
-            WT_Notes:UpdateNoteAll()
-        end
-        self:RegisterComm("WT_Notes", "OnAddonMessageReceived")
     end
 end
 
@@ -1389,4 +1391,8 @@ function WT_Notes:WT_NoteCommand(cmd)
 end
 
 -- 启用函数
-function WT_Notes:OnEnable() self:RegisterChatCommand("note", "WT_NoteCommand") end
+function WT_Notes:OnEnable()
+    if WT_Notes.notebookSetting.enabled then
+        self:RegisterChatCommand("note", "WT_NoteCommand")
+    end
+end
