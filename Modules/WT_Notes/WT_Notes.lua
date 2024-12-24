@@ -628,6 +628,7 @@ function WT_Notes:ShowImportDialog()
             local encodedContent = self.editBox:GetText()
             if encodedContent == nil or encodedContent == "" then
                 WT_Notes:AlertWarn("不能导入空字符串!")
+                return
             end
             local newName = nil
             local newContent = nil
@@ -637,6 +638,11 @@ function WT_Notes:ShowImportDialog()
                     newName = strarr[1]
                     newContent = strarr[2]
                 end
+            end
+            if (noteName == nil or noteName == "") or
+                (newContent or newContent == "") then
+                WT_Notes:AlertWarn("导入的字符串不正确!")
+                return
             end
 
             local noteName = Base64:Decode(newName)
@@ -698,21 +704,6 @@ local function SendChatMSG(msg)
     return
 end
 
-local function removeColorCodes(text)
-    -- 正则表达式匹配颜色代码及其包围的文本
-    local pattern = "(.-)|cff[0-9a-fA-F]+(.-)|r(.-)"
-    -- 正则表达式匹配特殊链接
-    local linkPattern = "(.-)|H(.-)|h|r(.-)"
-
-    -- 替换操作
-    local beforeLink1, hasLink, afterLink = string.match(text, linkPattern)
-    local beforeText, colorText, afterText = string.match(text, pattern)
-    if colorText and not hasLink then
-        return beforeText .. colorText .. afterText
-    else
-        return text
-    end
-end
 -- 设置UI界面
 function WT_Notes:SetupUI()
     -- 创建一个框架实例
@@ -1215,7 +1206,7 @@ function WT_Notes:SetupUI()
     -- 设置按钮的回调函数
     syncNoteButton:SetCallback("OnClick", function()
         if (#WT_Notes.notes < 1) then
-            WT_Notes:AlertWarn("没有笔记可以导出!")
+            WT_Notes:AlertWarn("没有笔记可以同步!")
             return
         end
         WT_Notes:SyncNoteToOthers()
@@ -1237,19 +1228,18 @@ function WT_Notes:SetupUI()
     -- 设置按钮的回调函数
     sendNoteButton:SetCallback("OnClick", function()
         if (#WT_Notes.notes < 1) then
-            WT_Notes:AlertWarn("没有笔记可以导出!")
+            WT_Notes:AlertWarn("没有笔记可以发送!")
             return
         end
         -- 获取笔记内容并分割成多行
         local noteContent = self.selectedNote.content
         local lines = {string.split("\n", noteContent)}
         for index, line in ipairs(lines) do
-            -- 替换匹配到的颜色代码为空字符串
-            local newLine = removeColorCodes(line)
-            C_Timer.After(index, function() SendChatMSG(newLine) end)
+            print(WT_Notes.Note_M_S_Body_sendChannel)
+            C_Timer.After(index, function() SendChatMSG(line) end)
         end
     end)
-    sendNoteButton.frame:Show()
+    sendNoteButton.frame:Hide()
 
     -- 创建 Dropdown 控件
     local sendChannelDropdown = AceGUI:Create("Dropdown")
@@ -1274,7 +1264,7 @@ function WT_Notes:SetupUI()
                                             .WT_NoteSettingFrameBody)
     sendChannelDropdown.frame:SetPoint("TOPLEFT", sendNoteButton.frame,
                                        "TOPRIGHT", 5, 3.5)
-    sendChannelDropdown.frame:Show()
+    sendChannelDropdown.frame:Hide()
     -- 创建自定义关闭按钮
     self.frame.CloseButton:SetSize(32, 32)
     self.frame.CloseButton:SetNormalTexture(
@@ -1346,7 +1336,7 @@ end
 function WT_Notes:OnInitialize()
     -- 注册数据库, 这里的名字和toc文件的名字一致
     self.db = AceDB:New("WT_NotesDB")
-    self.db:RegisterDefaults({profile = {notes = {}}})
+    self.db:RegisterDefaults({global = {notes = {}}})
 
     -- 开启了插件这里才不会=nil
     if self.parent then
@@ -1355,7 +1345,7 @@ function WT_Notes:OnInitialize()
 
         if WT_Notes.notebookSetting.enabled then
             -- 因为不会写滚动条,所以最多支持30篇笔记
-            WT_Notes.notes = self.db.profile.notes
+            WT_Notes.notes = self.db.global.notes
             -- 渲染笔记UI框架
             self:SetupUI()
             -- 渲染笔记列表

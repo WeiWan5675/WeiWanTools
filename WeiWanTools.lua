@@ -80,10 +80,10 @@ local options = {
                     name = "显示小地图图标",
                     desc = "是否显示小地图图标",
                     get = function(info)
-                        return WeiWanTools.db.profile.showMiniMapIcon
+                        return WeiWanTools.db.global.showMiniMapIcon
                     end,
                     set = function(info, value)
-                        WeiWanTools.db.profile.showMiniMapIcon = value
+                        WeiWanTools.db.global.showMiniMapIcon = value
                         WeiWanTools:OnToggleOptionChanged(value,
                                                           '显示小地图图标')
                     end
@@ -105,10 +105,10 @@ local options = {
                     name = "启用自动游戏设置",
                     desc = "启用自动游戏设置",
                     get = function(info)
-                        return WeiWanTools.db.profile.autoSetting.enabled
+                        return WeiWanTools.db.global.autoSetting.enabled
                     end,
                     set = function(info, value)
-                        WeiWanTools.db.profile.autoSetting.enabled = value
+                        WeiWanTools.db.global.autoSetting.enabled = value
                         WeiWanTools:OnToggleOptionChanged(value,
                                                           '启用自动折叠追踪栏')
                     end,
@@ -123,14 +123,59 @@ local options = {
                             name = "关闭浮动战斗信息",
                             desc = "关闭浮动战斗信息",
                             get = function(info)
-                                return WeiWanTools.db.profile.autoSetting
+                                return WeiWanTools.db.global.autoSetting
                                            .autoCloseBattleText
                             end,
                             set = function(info, value)
-                                WeiWanTools.db.profile.autoSetting
+                                WeiWanTools.db.global.autoSetting
                                     .autoCloseBattleText = value
                                 WeiWanTools:OnToggleOptionChanged(value,
                                                                   '地下城时自动折叠追踪栏')
+                            end
+                        },
+                        autoShowLowLevelQuest = {
+                            type = "toggle", -- 开关
+                            name = "开启低等级任务追踪",
+                            desc = "开启低等级任务追踪",
+                            get = function(info)
+                                return WeiWanTools.db.global.autoSetting
+                                           .autoShowLowLevelQuest
+                            end,
+                            set = function(info, value)
+                                WeiWanTools.db.global.autoSetting
+                                    .autoShowLowLevelQuest = value
+                                WeiWanTools:OnToggleOptionChanged(value,
+                                                                  '开启低等级任务追踪')
+                            end
+                        },
+                        minimapTrackingShowAll = {
+                            type = "toggle", -- 开关
+                            name = "小地图开启所有追踪选项",
+                            desc = "小地图开启所有追踪选项",
+                            get = function(info)
+                                return WeiWanTools.db.global.autoSetting
+                                           .minimapTrackingShowAll
+                            end,
+                            set = function(info, value)
+                                WeiWanTools.db.global.autoSetting
+                                    .minimapTrackingShowAll = value
+                                WeiWanTools:OnToggleOptionChanged(value,
+                                                                  '小地图开启所有追踪选项')
+                            end
+                        },
+                        showUnitNameOwn = {
+                            type = "toggle", -- 开关
+                            name = "自动显示玩家自身名称",
+                            desc = "自动显示玩家自身名称",
+                            get = function(info)
+                                return WeiWanTools.db.global.autoSetting
+                                           .showUnitNameOwn
+                            end,
+                            set = function(info, value)
+                                WeiWanTools.db.global.autoSetting
+                                    .showUnitNameOwn = value
+                                WeiWanTools:OnToggleOptionChanged(value,
+                                                                  '自动显示玩家自身名称')
                             end
                         }
                     }
@@ -140,10 +185,10 @@ local options = {
                     name = "启用自动折叠追踪栏",
                     desc = "启用自动折叠追踪栏",
                     get = function(info)
-                        return WeiWanTools.db.profile.autoFoldQuestBar.enabled
+                        return WeiWanTools.db.global.autoFoldQuestBar.enabled
                     end,
                     set = function(info, value)
-                        WeiWanTools.db.profile.autoFoldQuestBar.enabled = value
+                        WeiWanTools.db.global.autoFoldQuestBar.enabled = value
                         WeiWanTools:OnToggleOptionChanged(value,
                                                           '启用自动折叠追踪栏')
                     end,
@@ -163,11 +208,11 @@ local options = {
                             name = "地下城",
                             desc = "地下城时自动折叠追踪栏",
                             get = function(info)
-                                return WeiWanTools.db.profile.autoFoldQuestBar
+                                return WeiWanTools.db.global.autoFoldQuestBar
                                            .autoFoldQuestBarParty
                             end,
                             set = function(info, value)
-                                WeiWanTools.db.profile.autoFoldQuestBar
+                                WeiWanTools.db.global.autoFoldQuestBar
                                     .autoFoldQuestBarParty = value
                                 WeiWanTools:OnToggleOptionChanged(value,
                                                                   '地下城时自动折叠追踪栏')
@@ -178,11 +223,11 @@ local options = {
                             name = "团队副本",
                             desc = "团队副本时自动折叠追踪栏",
                             get = function(info)
-                                return WeiWanTools.db.profile.autoFoldQuestBar
+                                return WeiWanTools.db.global.autoFoldQuestBar
                                            .autoFoldQuestBarRaid
                             end,
                             set = function(info, value)
-                                WeiWanTools.db.profile.autoFoldQuestBar
+                                WeiWanTools.db.global.autoFoldQuestBar
                                     .autoFoldQuestBarRaid = value
                                 WeiWanTools:OnToggleOptionChanged(value,
                                                                   '团队副本时自动折叠追踪栏')
@@ -193,11 +238,11 @@ local options = {
                             name = "PVP",
                             desc = "PVP时自动折叠追踪栏",
                             get = function(info)
-                                return WeiWanTools.db.profile.autoFoldQuestBar
+                                return WeiWanTools.db.global.autoFoldQuestBar
                                            .autoFoldQuestBarPVP
                             end,
                             set = function(info, value)
-                                WeiWanTools.db.profile.autoFoldQuestBar
+                                WeiWanTools.db.global.autoFoldQuestBar
                                     .autoFoldQuestBarPVP = value
                                 WeiWanTools:OnToggleOptionChanged(value,
                                                                   'PVP时自动折叠追踪栏')
@@ -222,10 +267,10 @@ local options = {
                     name = "启用冒险笔记本",
                     desc = "启用冒险笔记本",
                     get = function(info)
-                        return WeiWanTools.db.profile.notebookSetting.enabled
+                        return WeiWanTools.db.global.notebookSetting.enabled
                     end,
                     set = function(info, value)
-                        WeiWanTools.db.profile.notebookSetting.enabled = value
+                        WeiWanTools.db.global.notebookSetting.enabled = value
                         WeiWanTools:OnToggleOptionChanged(value,
                                                           '启用自动折叠追踪栏')
                     end,
@@ -248,11 +293,11 @@ local options = {
                             max = 48, -- 最大值
                             step = 1, -- 步长
                             get = function(info)
-                                return WeiWanTools.db.profile.notebookSetting
+                                return WeiWanTools.db.global.notebookSetting
                                            .noteFontSize
                             end,
                             set = function(info, value)
-                                WeiWanTools.db.profile.notebookSetting
+                                WeiWanTools.db.global.notebookSetting
                                     .noteFontSize = value
                                 WeiWanTools:OnToggleOptionChanged(value,
                                                                   '编辑器字体大小')
@@ -267,14 +312,14 @@ local options = {
                             max = 1, -- 最大值
                             step = 0.1, -- 步长
                             get = function(info)
-                                return WeiWanTools.db.profile.notebookSetting
+                                return WeiWanTools.db.global.notebookSetting
                                            .noteListAlpha
                             end,
                             set = function(info, value)
-                                WeiWanTools.db.profile.notebookSetting
+                                WeiWanTools.db.global.notebookSetting
                                     .noteListAlpha = value
                                 WeiWanTools:OnToggleOptionChanged(
-                                    WeiWanTools.db.profile.notebookSetting
+                                    WeiWanTools.db.global.notebookSetting
                                         .noteListAlpha, '左侧列表透明度')
                             end,
                             order = 2
@@ -287,14 +332,14 @@ local options = {
                             max = 1, -- 最大值
                             step = 0.1, -- 步长
                             get = function(info)
-                                return WeiWanTools.db.profile.notebookSetting
+                                return WeiWanTools.db.global.notebookSetting
                                            .noteBodyAlpha
                             end,
                             set = function(info, value)
-                                WeiWanTools.db.profile.notebookSetting
+                                WeiWanTools.db.global.notebookSetting
                                     .noteBodyAlpha = value
                                 WeiWanTools:OnToggleOptionChanged(
-                                    WeiWanTools.db.profile.notebookSetting
+                                    WeiWanTools.db.global.notebookSetting
                                         .noteBodyAlpha, '编辑器透明度')
                             end,
                             order = 3
@@ -307,14 +352,14 @@ local options = {
                             max = 1, -- 最大值
                             step = 0.1, -- 步长
                             get = function(info)
-                                return WeiWanTools.db.profile.notebookSetting
+                                return WeiWanTools.db.global.notebookSetting
                                            .noteRightAlpha
                             end,
                             set = function(info, value)
-                                WeiWanTools.db.profile.notebookSetting
+                                WeiWanTools.db.global.notebookSetting
                                     .noteRightAlpha = value
                                 WeiWanTools:OnToggleOptionChanged(
-                                    WeiWanTools.db.profile.notebookSetting
+                                    WeiWanTools.db.global.notebookSetting
                                         .noteRightAlpha, '右侧面板透明度')
                             end,
                             order = 4
@@ -330,7 +375,7 @@ local options = {
                             desc = "选择一个颜色。",
                             get = function(info)
                                 hex = tostring(
-                                          WeiWanTools.db.profile.notebookSetting
+                                          WeiWanTools.db.global.notebookSetting
                                               .noteThemeColor)
                                 -- 去除可能存在的井号前缀（#）
                                 if string.sub(hex, 1, 1) == "#" then
@@ -360,7 +405,7 @@ local options = {
                                 local colorStr =
                                     string.format("%02x%02x%02x", r * 255,
                                                   g * 255, b * 255)
-                                WeiWanTools.db.profile.notebookSetting
+                                WeiWanTools.db.global.notebookSetting
                                     .noteThemeColor = colorStr
                                 WeiWanTools:OnToggleOptionChanged(colorStr,
                                                                   '笔记本主题颜色')
@@ -393,10 +438,10 @@ end
 function WeiWanTools:MiniMapIconClick() WeiWanTools:WtOpenSettings() end
 
 -- 定义一个回调函数供子模块使用
-function WeiWanTools:GetProfileSetting(key) return self.db.profile[key] end
+function WeiWanTools:GetProfileSetting(key) return self.db.global[key] end
 
 -- 定义一个回调函数供子模块使用
-function WeiWanTools:SetProfileSetting(key, value) self.db.profile[key] = value end
+function WeiWanTools:SetProfileSetting(key, value) self.db.global[key] = value end
 
 function WeiWanTools:RegisterMiniMapIcon()
     local borker = LDB:NewDataObject("WeiWanTools", {
@@ -407,7 +452,7 @@ function WeiWanTools:RegisterMiniMapIcon()
     })
 
     brokerConfig = {hide = false}
-    brokerConfig.hide = not self.db.profile.showMiniMapIcon
+    brokerConfig.hide = not self.db.global.showMiniMapIcon
     LDBI:Register("WeiWanTools", borker, brokerConfig)
 end
 
@@ -418,15 +463,15 @@ function WeiWanTools:OnInitialize()
     -- 注册数据库, 这里的名字和toc文件的名字一致
     self.db = AceDB:New("WeiWanToolsDB")
     self.db:RegisterDefaults({
-        profile = {
+        global = {
             autoFoldQuestBar = {
-                enabled = true,
+                enabled = false,
                 autoFoldQuestBarParty = true,
                 autoFoldQuestBarRaid = true,
                 autoFoldQuestBarPVP = true
             },
             notebookSetting = {
-                enabled = true,
+                enabled = false,
                 noteFontSize = 18,
                 noteListAlpha = 0.8,
                 noteBodyAlpha = 0.6,
@@ -434,8 +479,16 @@ function WeiWanTools:OnInitialize()
                 noteThemeColor = "00bd00"
             },
             showMiniMapIcon = true, -- 是否显示小地图图标
-            autoSetting = {enabled = false, autoCloseBattleText = false}
-        }
+            autoSetting = {
+                enabled = true,
+                autoCloseBattleText = true,
+                autoShowLowLevelQuest = true,
+                minimapTrackingShowAll = true,
+                showUnitNameOwn = true
+            },
+            auctions = {}
+        },
+        profile = {}
     })
     -- 注册到暴雪插件设置
     self.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions(
@@ -443,7 +496,7 @@ function WeiWanTools:OnInitialize()
     -- 添加小地图按钮
     WeiWanTools:RegisterMiniMapIcon()
     -- 注册子模块
-    if self.db.profile.notebookSetting.enabled then
+    if self.db.global.notebookSetting.enabled then
         WeiWanTools.WT_Notes = LibStub("AceAddon-3.0"):GetAddon("WT_Notes")
         WeiWanTools.WT_Notes:RegisterWithParent(WeiWanTools)
     end
