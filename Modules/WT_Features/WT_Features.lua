@@ -69,6 +69,34 @@ function WT_Features:AutoFoldQuestBar(event, isLogin, isReloadUI)
     end
 end
 
+function WT_Features:NameplateAdJust(event, isLogin, isReloadUI)
+    -- if not isLogin and not isReloadUI then
+    local nameplateSetting = self.parent:GetProfileSetting("nameplateSetting")
+    local isPartyEnabled = nameplateSetting.autoNameplateParty
+    local isRaidEnabled = nameplateSetting.autoNameplateRaid
+    local isPVPEnabled = nameplateSetting.autoNameplatePVP
+
+    if nameplateSetting.enabled then
+        local _, instanceType = GetInstanceInfo()
+        if instanceType == "party" and isPartyEnabled then
+            SetCVar("nameplateShowOnlyNames", 1)
+            print(string.format("|cff%s%s|r", GetClassColors(),
+                                "WeiWanTools: 已自动调整姓名板!"))
+            return
+        elseif instanceType == "raid" and isRaidEnabled then
+            SetCVar("nameplateShowOnlyNames", 1)
+            print(string.format("|cff%s%s|r", GetClassColors(),
+                                "WeiWanTools: 已自动调整姓名板!"))
+            return
+        elseif instanceType == "pvp" and isPVPEnabled then
+            SetCVar("nameplateShowOnlyNames", 1)
+            print(string.format("|cff%s%s|r", GetClassColors(),
+                                "WeiWanTools: 已自动调整姓名板!"))
+            return
+        end
+        SetCVar("nameplateShowOnlyNames", 0)
+    end
+end
 function WT_Features:AutoSettingGame(event, isLogin, isReloadUI)
     local autoGameSetting = self.parent:GetProfileSetting("autoSetting")
     if isLogin or isReloadUI then
@@ -103,13 +131,36 @@ function WT_Features:AutoSettingGame(event, isLogin, isReloadUI)
     end
 end
 
+function WT_Features:NameplateSetting(event, isLogin, isReloadUI)
+    local nameplateSetting = self.parent:GetProfileSetting("nameplateSetting")
+    if isLogin or isReloadUI then
+        if nameplateSetting.enabled and nameplateSetting.nameplateShowAll then
+            -- 自动启用所有姓名板
+            SetCVar("nameplateShowAll", 1)
+        end
+        if nameplateSetting.enabled and nameplateSetting.nameplateShowEnemies then
+            -- 自动开启显示敌方姓名板
+            SetCVar("nameplateShowEnemies", 1)
+        end
+        if nameplateSetting.enabled and nameplateSetting.nameplateShowFriends then
+            -- 自动开启显示友方姓名板
+            SetCVar("nameplateShowFriends", 1)
+        end
+        print(string.format("|cff%s%s|r", GetClassColors(),
+                            "WeiWanTools: 自动开启姓名板相关设置!"))
+    end
+end
+
 function WT_Features:PLAYER_ENTERING_WORLD(event, isLogin, isReloadUI)
 
     -- 进出副本自动折叠任务栏
     WT_Features:AutoFoldQuestBar(event, isLogin, isReloadUI)
-
+    -- 姓名板调整
+    WT_Features:NameplateAdJust(event, isLogin, isReloadUI)
+    -- 姓名板自动设置
+    WT_Features:NameplateSetting(event, isLogin, isReloadUI)
+    -- 游戏自动设置
     WT_Features:AutoSettingGame(event, isLogin, isReloadUI)
-
 end
 
 function WT_Features:deleteAllGeneralMacros()

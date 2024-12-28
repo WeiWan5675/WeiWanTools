@@ -38,7 +38,10 @@ function WeiWanTools:WtRootCommand(cmd)
     end
 end
 
-function WeiWanTools:OnToggleOptionChanged(optionValue, optionName) end
+function WeiWanTools:OnToggleOptionChanged(optionValue, optionName)
+    -- print("optionName: ", optionName)
+    -- print("optionValue: ", optionValue)
+end
 
 function WeiWanTools:ResetProfileConfirmation()
     -- 定义对话框
@@ -110,7 +113,21 @@ local options = {
                     set = function(info, value)
                         WeiWanTools.db.global.autoSetting.enabled = value
                         WeiWanTools:OnToggleOptionChanged(value,
-                                                          '启用自动折叠追踪栏')
+                                                          '启用自动游戏设置')
+                    end,
+                    order = 2
+                },
+                nameplateSetting = {
+                    type = "toggle", -- 开关
+                    name = "启用姓名版增强",
+                    desc = "启用姓名版增强",
+                    get = function(info)
+                        return WeiWanTools.db.global.nameplateSetting.enabled
+                    end,
+                    set = function(info, value)
+                        WeiWanTools.db.global.nameplateSetting.enabled = value
+                        WeiWanTools:OnToggleOptionChanged(value,
+                                                          '启用姓名版增强')
                     end,
                     order = 2
                 },
@@ -177,6 +194,118 @@ local options = {
                                 WeiWanTools:OnToggleOptionChanged(value,
                                                                   '自动显示玩家自身名称')
                             end
+                        }
+                    }
+                },
+                nameplateSettingGroup = {
+                    type = "group",
+                    name = "姓名版增强",
+                    args = {
+                        basicNameplateSettingTitle = {
+                            type = "header", -- 标题
+                            name = "自动开启姓名版",
+                            order = 1
+                        },
+                        nameplateShowAll = {
+                            type = "toggle", -- 开关
+                            name = "自动启用所有姓名版",
+                            desc = "自动启用所有姓名版",
+                            get = function(info)
+                                return WeiWanTools.db.global.nameplateSetting
+                                           .nameplateShowAll
+                            end,
+                            set = function(info, value)
+                                WeiWanTools.db.global.nameplateSetting
+                                    .nameplateShowAll = value
+                                WeiWanTools:OnToggleOptionChanged(value,
+                                                                  '自动启用所有姓名版')
+                            end,
+                            order = 2
+                        },
+                        nameplateShowEnemies = {
+                            type = "toggle", -- 开关
+                            name = "自动显示敌方姓名板",
+                            desc = "自动显示敌方姓名板",
+                            get = function(info)
+                                return WeiWanTools.db.global.nameplateSetting
+                                           .nameplateShowEnemies
+                            end,
+                            set = function(info, value)
+                                WeiWanTools.db.global.nameplateSetting
+                                    .nameplateShowEnemies = value
+                                WeiWanTools:OnToggleOptionChanged(value,
+                                                                  '自动显示敌方姓名板')
+                            end,
+                            order = 3
+                        },
+                        nameplateShowFriends = {
+                            type = "toggle", -- 开关
+                            name = "自动显示友方姓名板",
+                            desc = "自动显示友方姓名板",
+                            get = function(info)
+                                return WeiWanTools.db.global.nameplateSetting
+                                           .nameplateShowFriends
+                            end,
+                            set = function(info, value)
+                                WeiWanTools.db.global.nameplateSetting
+                                    .nameplateShowFriends = value
+                                WeiWanTools:OnToggleOptionChanged(value,
+                                                                  '自动显示友方姓名板')
+                            end,
+                            order = 4
+                        },
+                        fubenNameplateSettingTitle = {
+                            type = "header", -- 标题
+                            name = "自动调整姓名版",
+                            order = 5
+                        },
+                        autoNameplatePVP = {
+                            type = "toggle", -- 开关
+                            name = "PVP自动调整姓名版",
+                            desc = "PVP自动调整姓名版",
+                            get = function(info)
+                                return WeiWanTools.db.global.nameplateSetting
+                                           .autoNameplatePVP
+                            end,
+                            set = function(info, value)
+                                WeiWanTools.db.global.nameplateSetting
+                                    .autoNameplatePVP = value
+                                WeiWanTools:OnToggleOptionChanged(value,
+                                                                  'PVP自动调整姓名版')
+                            end,
+                            order = 6
+                        },
+                        autoNameplateParty = {
+                            type = "toggle", -- 开关
+                            name = "地下城自动调整姓名版",
+                            desc = "地下城自动调整姓名版",
+                            get = function(info)
+                                return WeiWanTools.db.global.nameplateSetting
+                                           .autoNameplateParty
+                            end,
+                            set = function(info, value)
+                                WeiWanTools.db.global.nameplateSetting
+                                    .autoNameplateParty = value
+                                WeiWanTools:OnToggleOptionChanged(value,
+                                                                  '地下城自动调整姓名版')
+                            end,
+                            order = 7
+                        },
+                        autoNameplateRaid = {
+                            type = "toggle", -- 开关
+                            name = "团队副本自动调整姓名版",
+                            desc = "团队副本自动调整姓名版",
+                            get = function(info)
+                                return WeiWanTools.db.global.nameplateSetting
+                                           .autoNameplateRaid
+                            end,
+                            set = function(info, value)
+                                WeiWanTools.db.global.nameplateSetting
+                                    .autoNameplateRaid = value
+                                WeiWanTools:OnToggleOptionChanged(value,
+                                                                  '团队副本自动调整姓名版')
+                            end,
+                            order = 8
                         }
                     }
                 },
@@ -523,6 +652,15 @@ function WeiWanTools:OnInitialize()
                 autoShowLowLevelQuest = true,
                 minimapTrackingShowAll = true,
                 showUnitNameOwn = true
+            },
+            nameplateSetting = {
+                enabled = true,
+                nameplateShowAll = true,
+                nameplateShowEnemies = true,
+                nameplateShowFriends = true,
+                autoNameplateParty = true,
+                autoNameplateRaid = true,
+                autoNameplatePVP = true
             },
             auctions = {}
         },
