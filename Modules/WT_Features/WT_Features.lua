@@ -112,6 +112,82 @@ function WT_Features:PLAYER_ENTERING_WORLD(event, isLogin, isReloadUI)
 
 end
 
+function WT_Features:deleteAllGeneralMacros()
+    -- 定义对话框
+    StaticPopupDialogs["WEIWANTOOLS_DELETE_GENERAL_MACROS_POPUP"] = {
+        text = "你确定要删除所有通用宏吗?\n这将清空通用的所有的宏命令!",
+        button1 = "确定",
+        button2 = "取消",
+        OnAccept = function()
+            StaticPopup_Hide("WEIWANTOOLS_DELETE_GENERAL_MACROS_POPUP");
+            -- 删除所有宏
+            for i = 1, 120 do DeleteMacro(i) end
+            for i = 1, 120 do DeleteMacro(i) end
+            for i = 1, 120 do DeleteMacro(i) end
+            for i = 1, 120 do DeleteMacro(i) end
+            for i = 1, 120 do DeleteMacro(i) end
+            for i = 1, 120 do DeleteMacro(i) end
+        end,
+        timeout = 0,
+        whileDead = 1,
+        showAlert = 1,
+        exclusive = 1
+    }
+
+    -- 显示对话框
+    StaticPopup_Show("WEIWANTOOLS_DELETE_GENERAL_MACROS_POPUP")
+end
+
+function WT_Features:deleteAllMacros()
+    -- 定义对话框
+    StaticPopupDialogs["WEIWANTOOLS_DELETE_ALL_MACROS_POPUP"] = {
+        text = "你确定要删除所有宏吗?\n这将清空所有的宏命令(通用+角色)!",
+        button1 = "确定",
+        button2 = "取消",
+        OnAccept = function()
+            StaticPopup_Hide("WEIWANTOOLS_DELETE_ALL_MACROS_POPUP");
+            -- 删除所有角色宏
+            for i = 1, 138 do DeleteMacro(i) end
+            for i = 1, 138 do DeleteMacro(i) end
+            for i = 1, 138 do DeleteMacro(i) end
+            for i = 1, 138 do DeleteMacro(i) end
+            for i = 1, 138 do DeleteMacro(i) end
+            for i = 1, 138 do DeleteMacro(i) end
+        end,
+        timeout = 0,
+        whileDead = 1,
+        showAlert = 1,
+        exclusive = 1
+    }
+
+    -- 显示对话框
+    StaticPopup_Show("WEIWANTOOLS_DELETE_ALL_MACROS_POPUP")
+end
+function WT_Features:deleteAllUserMacros()
+    -- 定义对话框
+    StaticPopupDialogs["WEIWANTOOLS_DELETE_USER_MACROS_POPUP"] = {
+        text = "你确定要删除所有角色宏吗?\n这将清空角色的所有的宏命令!",
+        button1 = "确定",
+        button2 = "取消",
+        OnAccept = function()
+            StaticPopup_Hide("WEIWANTOOLS_DELETE_USER_MACROS_POPUP");
+            -- 删除所有角色宏
+            for i = 121, 138 do DeleteMacro(i) end
+            for i = 121, 138 do DeleteMacro(i) end
+            for i = 121, 138 do DeleteMacro(i) end
+            for i = 121, 138 do DeleteMacro(i) end
+            for i = 121, 138 do DeleteMacro(i) end
+        end,
+        timeout = 0,
+        whileDead = 1,
+        showAlert = 1,
+        exclusive = 1
+    }
+
+    -- 显示对话框
+    StaticPopup_Show("WEIWANTOOLS_DELETE_USER_MACROS_POPUP")
+end
+
 -- 定义一个函数来注册自己到父模块
 function WT_Features:RegisterWithParent(parent) self.parent = parent end
 

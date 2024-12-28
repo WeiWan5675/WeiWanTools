@@ -249,9 +249,47 @@ local options = {
                             end
                         }
                     }
+                },
+                quickOperation = {
+                    type = "group",
+                    name = "常用快捷操作",
+                    args = {
+                        basicFeaturesTitle = {
+                            type = "header", -- 标题
+                            name = "宏命令快速操作",
+                            order = 1
+                        },
+                        deleteAllGeneralMacros = {
+                            type = "execute",
+                            name = "删除所有通用宏",
+                            desc = "点击删除所有通用宏!",
+                            func = function()
+                                WeiWanTools.WT_Features:deleteAllGeneralMacros()
+                            end,
+                            dialogControl = "Button"
+                        },
+                        deleteAllUserMacros = {
+                            type = "execute",
+                            name = "删除所有角色宏",
+                            desc = "点击删除所有角色宏!",
+                            func = function()
+                                WeiWanTools.WT_Features:deleteAllUserMacros()
+                            end,
+                            dialogControl = "Button"
+                        },
+                        deleteAllMacros = {
+                            type = "execute",
+                            name = "删除所有宏(通用+角色)",
+                            desc = "点击删除所有角色宏!",
+                            func = function()
+                                WeiWanTools.WT_Features:deleteAllMacros()
+                            end,
+                            dialogControl = "Button"
+                        }
+                    }
                 }
             },
-            order = 2
+            order = 3
         },
         notebookGroup = {
             type = "group",
